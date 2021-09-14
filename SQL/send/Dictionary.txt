@@ -1,0 +1,124 @@
+                       Table "public.customer"
+   Column   |          Type          | Collation | Nullable | Default 
+------------+------------------------+-----------+----------+---------
+ customerid | integer                |           | not null | 
+ firstname  | character varying(32)  |           |          | 
+ lastname   | character varying(32)  |           |          | 
+ e_mail     | character varying(100) |           |          | 
+ state      | character varying(100) |           |          | 
+ street     | character varying(100) |           |          | 
+ city       | character varying(32)  |           |          | 
+ zip        | character varying(32)  |           |          | 
+ phone      | character varying(32)  |           |          | 
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (customerid)
+Referenced by:
+    TABLE "invoice" CONSTRAINT "invoice_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+    TABLE "order_dumpster" CONSTRAINT "order_dumpster_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+
+
+
+                           Table "public.driver"
+   Column    |          Type          | Collation | Nullable |   Default   
+-------------+------------------------+-----------+----------+-------------
+ driverid    | integer                |           | not null | 
+ driver_name | character varying(100) |           |          | 
+ available   | character(1)           |           |          | 'Y'::bpchar
+Indexes:
+    "driver_pkey" PRIMARY KEY, btree (driverid)
+Check constraints:
+    "driver_available_check" CHECK (available = 'Y'::bpchar OR available = 'N'::bpchar)
+Referenced by:
+    TABLE "dumpster" CONSTRAINT "dumpster_driverid_fkey" FOREIGN KEY (driverid) REFERENCES driver(driverid)
+    TABLE "expenses" CONSTRAINT "expenses_driverid_fkey" FOREIGN KEY (driverid) REFERENCES driver(driverid)
+
+
+
+
+
+
+
+                    Table "public.dumpster"
+   Column   |     Type     | Collation | Nullable |   Default   
+------------+--------------+-----------+----------+-------------
+ driverid   | integer      |           |          | 
+ dumpsterid | integer      |           | not null | 
+ available  | character(1) |           |          | 'Y'::bpchar
+ capacity   | integer      |           |          | 
+Indexes:
+    "dumpster_pkey" PRIMARY KEY, btree (dumpsterid)
+Check constraints:
+    "dumpster_available_check" CHECK (available = 'Y'::bpchar OR available = 'N'::bpchar)
+Foreign-key constraints:
+    "dumpster_driverid_fkey" FOREIGN KEY (driverid) REFERENCES driver(driverid)
+Referenced by:
+    TABLE "order_dumpster" CONSTRAINT "order_dumpster_dumpsterid_fkey" FOREIGN KEY (dumpsterid) REFERENCES dumpster(dumpsterid)
+
+
+
+
+
+
+
+
+                     Table "public.order_dumpster"
+    Column    |          Type          | Collation | Nullable | Default 
+--------------+------------------------+-----------+----------+---------
+ customerid   | integer                |           |          | 
+ dumpsterid   | integer                |           |          | 
+ dropoff_date | date                   |           |          | 
+ pickup_date  | date                   |           |          | 
+ to_street    | character varying(100) |           |          | 
+ to_city      | character varying(100) |           |          | 
+ to_state     | character varying(100) |           |          | 
+ to_zip       | character varying(32)  |           |          | 
+Foreign-key constraints:
+    "order_dumpster_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+    "order_dumpster_dumpsterid_fkey" FOREIGN KEY (dumpsterid) REFERENCES dumpster(dumpsterid)
+
+
+
+
+
+
+
+
+                                                              Table "public.invoice"
+     Column     |          Type          | Collation | Nullable |                                     Default                                     
+----------------+------------------------+-----------+----------+---------------------------------------------------------------------------------
+ invoiceid      | integer                |           | not null | 
+ customerid     | integer                |           |          | 
+ payment_method | character varying(100) |           |          | 
+ tons_price     | numeric                |           |          | 
+ distance_price | numeric                |           |          | 
+ days_price     | numeric                |           |          | 
+ type_material  | character varying(100) |           |          | 
+ over_price     | numeric                |           |          | 
+ over_weight    | numeric                |           |          | 
+ total_price    | numeric                |           |          | generated always as (tons_price + days_price + over_weight * over_price) stored
+Indexes:
+    "invoice_pkey" PRIMARY KEY, btree (invoiceid)
+Foreign-key constraints:
+    "invoice_customerid_fkey" FOREIGN KEY (customerid) REFERENCES customer(customerid)
+
+
+
+
+
+
+
+
+                                             Table "public.expenses"
+    Column     |  Type   | Collation | Nullable |                            Default                             
+---------------+---------+-----------+----------+----------------------------------------------------------------
+ driverid      | integer |           |          | 
+ driver_salary | numeric |           |          | 
+ gas           | numeric |           |          | 
+ maintenance   | numeric |           |          | 
+ total_expense | numeric |           |          | generated always as (driver_salary + gas + maintenance) stored
+Foreign-key constraints:
+    "expenses_driverid_fkey" FOREIGN KEY (driverid) REFERENCES driver(driverid)
+

@@ -1,0 +1,459 @@
+CREATE DATABASE load_go;
+
+\c load_go
+
+CREATE TABLE CUSTOMER
+(
+	CustomerId int primary key,
+	FirstName varchar(32),
+	LastName varchar(32),
+	E_mail varchar(20),
+	State varchar(5),
+	Street varchar(100),
+	City varchar(32),
+	Zip varchar(32),
+	Phone varchar(20)
+	
+);
+
+
+
+
+CREATE TABLE DRIVER 
+(	
+	
+	DriverId int primary key,
+	Driver_name varchar(100),
+	Available char(1) DEFAULT 'Y' CHECK ((Available = 'Y') OR (Available = 'N'))
+);
+
+
+
+
+CREATE TABLE DUMPSTER
+(
+	DriverId int references DRIVER(DriverId),
+	DumpsterId int primary key,
+	Available char(1) DEFAULT 'Y' CHECK((Available='Y')OR(Available='N')),
+	Capacity int
+	
+);
+
+
+
+CREATE TABLE ORDER_DUMPSTER
+(
+	CustomerId int references CUSTOMER(CustomerId),
+	DumpsterId int references DUMPSTER(DumpsterId),
+	DropOff_date date,
+	PickUp_date date,
+	To_street varchar(100),
+	To_city varchar(100),
+	To_state varchar(2),
+	To_zip varchar(32)
+);
+
+
+
+CREATE TABLE INVOICE
+(
+	InvoiceId int primary key,
+	CustomerId int references CUSTOMER(CustomerId),
+	Payment_method varchar(100),
+	Tons_price numeric,
+	Distance_price numeric,
+	Days_price numeric,
+	Type_material varchar(20),
+	Over_price numeric,
+	Over_weight numeric,
+	Total_price numeric GENERATED ALWAYS AS (Tons_price + Days_price + (Over_weight*Over_price)) stored
+);
+
+
+
+
+CREATE TABLE EXPENSES
+(
+	DriverId int references DRIVER(DriverId),
+	Driver_salary numeric,
+	Gas numeric,
+	Maintenance numeric,
+	Total_expense numeric GENERATED ALWAYS AS (Driver_salary + Gas + Maintenance) stored
+	
+);
+	
+
+
+
+			
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (1, 'Sarena', 'Akenhead', 'sakenhead0@apple.com', 'CT', '6 Warner Lane', 'Norwalk', '06859', '203-612-7709');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (2, 'Chalmers', 'Petruskevich', 'cpetruskevich1@tumblr.com', 'CT', '13451 Crescent Oaks Alley', 'Norwalk', '06854', '203-925-7212');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (3, 'Scot', 'Bohlin', 'sbohlin2@51.la', 'CT', '54 Ludington Pass', 'Hartford', '06160', '860-497-1424');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (4, 'Wainwright', 'Cowan', 'wcowan3@hugedomains.com', 'CT', '9 Fieldstone Center', 'Stamford', '06912', '203-249-9398');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (5, 'Augustina', 'Spensly', 'aspensly4@census.gov', 'CT', '5373 Bultman Way', 'Bridgeport', '06673', '203-888-0284');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (6, 'Sadella', 'Briddle', 'sbriddle5@google.de', 'CT', '974 Maple Point', 'Hartford', '06145', '860-896-8770');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (7, 'Lesly', 'Kurtis', 'lkurtis6@odnoklassniki.ru', 'CT', '473 Thierer Park', 'Stamford', '06905', '203-102-0923');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (8, 'Elvera', 'Litherland', 'elitherland7@archive.org', 'CT', '02 Kennedy Street', 'Norwalk', '06859', '203-319-0830');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (9, 'Abram', 'Scothorne', 'ascothorne8@dmoz.org', 'CT', '90231 Derek Avenue', 'Danbury', '06816', '203-604-3164');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (10, 'Gan', 'Yukhtin', 'gyukhtin9@parallels.com', 'CT', '88 Florence Road', 'Norwalk', '06859', '203-725-2811');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (11, 'Morgan', 'Bamb', 'mbamba@ucoz.ru', 'CT', '5704 Texas Drive', 'Danbury', '06816', '203-873-0157');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (12, 'Gerik', 'Diamond', 'gdiamondb@dagondesign.com', 'CT', '4316 Cardinal Crossing', 'Norwalk', '06859', '203-736-2856');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (13, 'Aloisia', 'Kempton', 'akemptonc@posterous.com', 'CT', '4 Buena Vista Crossing', 'Waterbury', '06726', '203-990-1665');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (14, 'Ange', 'Chaundy', 'achaundyd@cbsnews.com', 'CT', '145 7th Street', 'Norwalk', '06854', '203-956-7102');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (15, 'Garland', 'Cianelli', 'gcianellie@example.com', 'CT', '750 Loeprich Crossing', 'New Haven', '06520', '203-364-0081');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (16, 'Maryanna', 'Cherryman', 'mcherrymanf@mashable.com', 'CT', '556 Becker Hill', 'Hartford', '06105', '860-288-7149');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (17, 'Lezley', 'Caltun', 'lcaltung@myspace.com', 'CT', '9 Vidon Court', 'Bridgeport', '06673', '203-501-7748');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (18, 'Allx', 'Eat', 'aeath@hc360.com', 'CT', '65483 Sugar Hill', 'Stamford', '06912', '203-257-9639');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (19, 'Brynna', 'Meeks', 'bmeeksi@aboutads.info', 'CT', '9499 Corry Plaza', 'New Haven', '06538', '203-455-1935');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (20, 'Cristobal', 'Lathom', 'clathomj@nba.com', 'CT', '55343 Ryan Hill', 'New Haven', '06510', '203-624-5476');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (21, 'Erastus', 'Guillotin', 'eguillotink@free.fr', 'CT', '36579 Annamark Parkway', 'Hartford', '06140', '860-823-7563');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (22, 'Deirdre', 'Willerton', 'dwillertonl@lulu.com', 'CT', '413 Moland Parkway', 'New Haven', '06533', '203-216-1348');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (23, 'Bryana', 'Roloff', 'broloffm@godaddy.com', 'CT', '1774 School Trail', 'West Hartford', '06127', '860-871-4915');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (24, 'Bernice', 'Bernardotte', 'bbernardotten@slashdot.org', 'CT', '9899 Jay Drive', 'Hartford', '06145', '860-540-8018');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (25, 'Byrom', 'Jacson', 'bjacsono@nymag.com', 'CT', '538 Hooker Plaza', 'West Hartford', '06127', '860-103-8198');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (26, 'Cesare', 'Tivnan', 'ctivnanp@irs.gov', 'CT', '3983 Porter Terrace', 'Bridgeport', '06673', '203-841-6888');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (27, 'Pennie', 'Purton', 'ppurtonq@netlog.com', 'CT', '59537 Browning Lane', 'West Hartford', '06127', '860-862-2101');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (28, 'Rhea', 'Pococke', 'rpococker@apache.org', 'CT', '01 Melody Trail', 'New Haven', '06520', '203-686-3320');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (29, 'Glenine', 'Sommer', 'gsommers@weebly.com', 'CT', '2 Cambridge Park', 'Waterbury', '06721', '203-661-9196');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (30, 'Ami', 'Littleton', 'alittletont@fotki.com', 'CT', '33 John Wall Drive', 'New Haven', '06510', '203-883-8810');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (31, 'Ingrim', 'Simoni', 'isimoniu@umn.edu', 'CT', '1493 Eagan Park', 'Norwalk', '06854', '203-441-9477');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (32, 'Lief', 'Fancet', 'lfancetv@bloomberg.com', 'CT', '058 Ilene Park', 'New Haven', '06538', '203-138-4527');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (33, 'Caldwell', 'Howgego', 'chowgegow@ehow.com', 'CT', '7 Grasskamp Point', 'Hartford', '06152', '860-634-3152');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (34, 'Creighton', 'Gittus', 'cgittusx@ask.com', 'CT', '00 Armistice Way', 'New Haven', '06533', '203-451-9649');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (35, 'Elsa', 'Tolson', 'etolsony@networksolutions.com', 'CT', '84 Artisan Crossing', 'Hartford', '06160', '860-980-9165');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (36, 'Ardene', 'Drew-Clifton', 'adrewcliftonz@census.gov', 'CT', '264 Logan Street', 'Stamford', '06905', '203-570-9363');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (37, 'Gloria', 'Steutly', 'gsteutly10@prlog.org', 'CT', '2280 Corscot Circle', 'Hartford', '06145', '860-743-4867');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (38, 'Korrie', 'Stooders', 'kstooders11@illinois.edu', 'CT', '547 Holy Cross Lane', 'Fairfield', '06825', '203-835-1763');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (39, 'Franklin', 'Jozef', 'fjozef12@squidoo.com', 'CT', '877 Shoshone Road', 'Hartford', '06140', '860-658-8506');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (40, 'Odette', 'Cranny', 'ocranny13@biglobe.ne.jp', 'CT', '7 Badeau Place', 'Waterbury', '06726', '203-204-3764');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (41, 'Ken', 'Mulcaster', 'kmulcaster14@i2i.jp', 'CT', '56 Morrow Lane', 'Stamford', '06905', '203-844-5362');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (42, 'Ambur', 'Ibbison', 'aibbison15@europa.eu', 'CT', '7751 Clove Alley', 'Hartford', '06105', '860-279-3381');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (43, 'Vincenty', 'Paish', 'vpaish16@istockphoto.com', 'CT', '5 Harbort Plaza', 'Bridgeport', '06606', '203-991-0427');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (44, 'Jefferson', 'Lindenberg', 'jlindenberg17@shinystat.com', 'CT', '05 Sloan Terrace', 'Stamford', '06905', '203-374-2852');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (45, 'Cosetta', 'Roman', 'croman18@weibo.com', 'CT', '0088 Loomis Lane', 'Hartford', '06152', '860-767-6165');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (46, 'Robinson', 'Ovens', 'rovens19@apache.org', 'CT', '3471 Annamark Circle', 'Norwalk', '06859', '203-159-1900');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (47, 'Norry', 'Grebbin', 'ngrebbin1a@si.edu', 'CT', '308 Spenser Terrace', 'Hartford', '06183', '860-190-8003');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (48, 'Mohammed', 'Ossenna', 'mossenna1b@cdbaby.com', 'CT', '373 Forest Dale Trail', 'Stamford', '06912', '203-966-9976');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (49, 'Marco', 'Eynaud', 'meynaud1c@infoseek.co.jp', 'CT', '17908 Kennedy Drive', 'Norwalk', '06854', '203-839-5924');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (50, 'Catriona', 'Enrich', 'cenrich1d@sourceforge.net', 'CT', '40 Homewood Pass', 'Waterbury', '06726', '203-597-2476');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (51, 'Myrta', 'Oag', 'moag1e@ucoz.ru', 'CT', '76 Sloan Avenue', 'Hartford', '06120', '860-423-4353');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (52, 'Dene', 'Lisciardelli', 'dlisciardelli1f@ihg.com', 'CT', '60417 Longview Trail', 'New Haven', '06505', '203-431-8074');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (53, 'Claybourne', 'Donovin', 'cdonovin1g@cyberchimps.com', 'CT', '504 Hallows Lane', 'New Haven', '06510', '203-699-5806');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (54, 'Nanete', 'Biddlecombe', 'nbiddlecombe1h@umich.edu', 'CT', '31820 Prentice Street', 'Stamford', '06922', '203-844-9559');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (55, 'Basilius', 'Hendriks', 'bhendriks1i@google.com.br', 'CT', '9207 Hayes Circle', 'Fairfield', '06825', '203-824-5502');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (56, 'Ave', 'Fice', 'afice1j@lulu.com', 'CT', '263 Golf View Drive', 'New Haven', '06520', '203-488-2036');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (57, 'Jdavie', 'Francesco', 'jfrancesco1k@seesaa.net', 'CT', '20 Moulton Plaza', 'New Haven', '06520', '203-757-3668');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (58, 'Saidee', 'Jessope', 'sjessope1l@reuters.com', 'CT', '927 Cardinal Circle', 'Bridgeport', '06673', '203-219-7112');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (59, 'Gavin', 'Jewsbury', 'gjewsbury1m@webmd.com', 'CT', '64298 Luster Terrace', 'New Haven', '06520', '203-408-1463');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (60, 'Kim', 'Lafflina', 'klafflina1n@reverbnation.com', 'CT', '55115 Graedel Parkway', 'Hartford', '06105', '203-802-3232');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (61, 'Jordan', 'Kaming', 'jkaming1o@virginia.edu', 'CT', '87 Colorado Center', 'Danbury', '06816', '203-321-0110');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (62, 'Burnard', 'Stanaway', 'bstanaway1p@businesswire.com', 'CT', '67830 Melvin Crossing', 'Waterbury', '06726', '203-121-3904');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (63, 'Dionne', 'Rablan', 'drablan1q@ted.com', 'CT', '5697 Bonner Crossing', 'New Haven', '06510', '203-867-8782');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (64, 'Zach', 'Chasemoore', 'zchasemoore1r@wikia.com', 'CT', '1 Butternut Park', 'Waterbury', '06726', '203-577-2298');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (65, 'Christie', 'Dymoke', 'cdymoke1s@acquirethisname.com', 'CT', '0414 Waxwing Avenue', 'New Haven', '06533', '203-325-8568');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (66, 'Esmeralda', 'Blandford', 'eblandford1t@twitter.com', 'CT', '3504 Luster Street', 'Stamford', '06912', '203-719-1047');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (67, 'Felicdad', 'Narramor', 'fnarramor1u@live.com', 'CT', '1505 Londonderry Way', 'Hartford', '06183', '860-937-7172');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (68, 'Daryn', 'Osboldstone', 'dosboldstone1v@state.gov', 'CT', '06 Dawn Trail', 'Norwalk', '06854', '203-126-6885');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (69, 'Sergeant', 'Comello', 'scomello1w@jimdo.com', 'CT', '5796 Hintze Lane', 'New Haven', '06510', '203-654-2149');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (70, 'Yehudi', 'Chew', 'ychew1x@icq.com', 'CT', '7 Old Gate Point', 'Norwalk', '06859', '203-668-4889');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (71, 'Giacomo', 'Fike', 'gfike1y@bbb.org', 'CT', '3045 Sage Pass', 'New Haven', '06520', '203-527-3258');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (72, 'Jessamyn', 'Bourhill', 'jbourhill1z@va.gov', 'CT', '2176 Ilene Hill', 'Bridgeport', '06673', '203-599-9452');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (73, 'Odey', 'O'' Neligan', 'ooneligan20@elpais.com', 'CT', '7 Becker Place', 'West Hartford', '06127', '860-850-5091');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (74, 'Tess', 'Tarren', 'ttarren21@slashdot.org', 'CT', '272 Killdeer Crossing', 'New Haven', '06520', '203-223-7658');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (75, 'Jenifer', 'Dance', 'jdance22@newsvine.com', 'CT', '29 Lakewood Park', 'Bridgeport', '06673', '203-830-8774');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (76, 'Aleen', 'Nowaczyk', 'anowaczyk23@nih.gov', 'CT', '24 Larry Pass', 'New Haven', '06510', '203-884-3067');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (77, 'Malia', 'Geldard', 'mgeldard24@sciencedirect.com', 'CT', '539 Sugar Parkway', 'West Hartford', '06127', '860-581-8470');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (78, 'Nicholas', 'Rusbridge', 'nrusbridge25@friendfeed.com', 'CT', '37013 Haas Terrace', 'Stamford', '06912', '203-820-2627');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (79, 'Cathleen', 'Spratley', 'cspratley26@theglobeandmail.com', 'CT', '797 Heffernan Park', 'Hartford', '06160', '860-593-9930');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (80, 'Alyda', 'Jammet', 'ajammet27@bizjournals.com', 'CT', '75 Kinsman Road', 'Hartford', '06140', '860-666-8822');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (81, 'Rania', 'Booler', 'rbooler28@so-net.ne.jp', 'CT', '032 Browning Place', 'Norwalk', '06854', '203-845-6949');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (82, 'Shelbi', 'Harvie', 'sharvie29@jimdo.com', 'CT', '5552 Elka Park', 'Norwalk', '06859', '203-909-8879');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (83, 'Kale', 'Bovey', 'kbovey2a@1688.com', 'CT', '63370 Carey Place', 'Danbury', '06816', '203-943-3919');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (84, 'Raphael', 'Crewdson', 'rcrewdson2b@wikipedia.org', 'CT', '3642 Grover Pass', 'New Haven', '06510', '203-499-5611');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (85, 'Artemis', 'Lammerts', 'alammerts2c@csmonitor.com', 'CT', '48 Di Loreto Road', 'Hartford', '06105', '860-663-4397');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (86, 'Ingra', 'Broke', 'ibroke2d@ifeng.com', 'CT', '159 Dapin Plaza', 'Fairfield', '06825', '203-213-3862');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (87, 'Muffin', 'Keeves', 'mkeeves2e@dedecms.com', 'CT', '6 Mitchell Lane', 'Hartford', '06105', '203-661-9220');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (88, 'Lucy', 'Wewell', 'lwewell2f@skype.com', 'CT', '6 Montana Road', 'Hartford', '06152', '860-557-4349');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (89, 'Godart', 'Jickles', 'gjickles2g@webmd.com', 'CT', '3963 Bartelt Hill', 'New Haven', '06510', '203-498-1207');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (90, 'Maddy', 'Tartt', 'mtartt2h@apache.org', 'CT', '43030 Northland Street', 'Stamford', '06912', '203-722-9818');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (91, 'Toddie', 'Woodington', 'twoodington2i@washington.edu', 'CT', '9 Brickson Park Trail', 'Stamford', '06912', '203-948-6547');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (92, 'Red', 'Minchinton', 'rminchinton2j@uiuc.edu', 'CT', '03293 Troy Drive', 'Bridgeport', '06673', '203-234-9643');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (93, 'Estele', 'Sergeant', 'esergeant2k@usgs.gov', 'CT', '0369 Ryan Park', 'Waterbury', '06721', '203-477-0353');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (94, 'Gusella', 'Spincke', 'gspincke2l@dropbox.com', 'CT', '77161 La Follette Center', 'New Haven', '06510', '203-940-3775');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (95, 'Jerri', 'Kingaby', 'jkingaby2m@shop-pro.jp', 'CT', '4369 Manitowish Hill', 'Fairfield', '06825', '203-781-1486');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (96, 'Mathew', 'Chevers', 'mchevers2n@usatoday.com', 'CT', '712 1st Lane', 'New Haven', '06505', '203-959-7506');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (97, 'Goober', 'Loidl', 'gloidl2o@ebay.com', 'CT', '38097 Union Point', 'New Haven', '06505', '203-810-9683');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (98, 'Maxie', 'Potts', 'mpotts2p@xing.com', 'CT', '8 Tomscot Center', 'Waterbury', '06726', '203-462-1157');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (99, 'Nomi', 'Paddie', 'npaddie2q@seesaa.net', 'CT', '90407 Pond Point', 'Fairfield', '06825', '203-560-2173');
+
+insert into CUSTOMER (CustomerId, FirstName, LastName, E_mail, State, Street, City, Zip, Phone) values (100, 'Bev', 'Handrock', 'bhandrock2r@google.nl', 'CT', '522 Hoffman Point', 'Hartford', '06160', '860-405-1028');
+
+
+
+
+
+INSERT INTO DRIVER VALUES (1, 'John','Y');
+INSERT INTO DRIVER VALUES (2, 'Peter','Y');
+INSERT INTO DRIVER VALUES (3, 'Jack','N');
+INSERT INTO DRIVER VALUES (4, 'Nick','Y');
+
+
+
+
+
+INSERT INTO DUMPSTER VALUES (1, 1 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (2, 2 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (3, 3 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (4, 4 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (1, 5 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (2, 6 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (3, 7 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (4, 8 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (1, 9 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (2, 10 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (3, 11 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (4, 12 ,'Y', 3000);
+
+
+
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (1, 1, '1/16/2020', '1/25/2020', '2 Kenwood Point', 'Hartford', 'CT', '06183');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (2, 2, '3/11/2020', '3/18/2020', '54 Thompson Drive', 'Hartford', 'CT', '06140');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (3, 3, '6/27/2020', '6/30/2020', '763 Corscot Plaza', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (4, 4, '1/6/2020', '1/15/2020', '407 Anthes Road', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (5, 8, '12/5/2019', '12/15/2020', '5 Di Loreto Terrace', 'West Hartford', 'CT', '06127');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (6, 11, '12/2/2019', '12/10/2020', '1003 Elmside Way', 'West Hartford', 'CT', '06127');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (7, 10, '2/13/2020', '2/20/2020', '38 Nobel Avenue', 'New Haven', 'CT', '06520');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (8, 2, '1/22/2020', '1/28/2020', '47 Crest Line Trail', 'New Haven', 'CT', '06505');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (9, 1, '7/25/2020', '8/10/2020', '7 Springs Junction', 'Hartford', 'CT', '06152');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (10, 5, '8/19/2020', '8/30/2020', '8362 Del Mar Pass', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (11, 8, '3/27/2020', '4/10/2020', '60606 Crowley Center', 'Hartford', 'CT', '06183');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (12, 10, '11/1/2020', '11/15/2020', '5571 Clarendon Street', 'Hartford', 'CT', '06105');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (13, 7, '11/12/2020', '11/24/2020', '3 Fremont Park', 'Danbury', 'CT', '06816');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (14, 1, '8/18/2020', '8/24/2020', '5 Katie Plaza', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (15, 6, '6/1/2020', '6/13/2020', '089 Mayer Junction', 'Hartford', 'CT', '06152');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (16, 4, '12/12/2020', '01/10/2021', '831 School Crossing', 'Waterbury', 'CT', '06721');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (17, 8, '7/13/2020', '07/25/2020', '768 Service Way', 'New Haven', 'CT', '06533');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (18, 9, '12/16/2019', '12/27/2020', '90739 Emmet Trail', 'Waterbury', 'CT', '06705');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (19, 2, '8/4/2020', '8/19/2020', '3 Thompson Terrace', 'New Haven', 'CT', '06533');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (20, 3, '6/5/2020', '6/15/2020', '19379 Twin Pines Pass', 'Hartford', 'CT', '06105');
+
+
+
+
+
+
+
+
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('94536', 1, 'jcb', '109.02', '48.33', 'Bricks', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('46176', 2, 'americanexpress', '231.17', '42.33', 'Bricks', '94.00', 2);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('69994', 3, 'jcb', '240.51', '25.25', 'Bricks', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('11029', 4, 'mastercard', '293.57', '18.56', 'Wood', '94.00', 2);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('49289', 5, 'jcb', '284.80', '36.64', 'iron', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('95491', 6, 'jcb', '206.15', '35.35', 'iron', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('57907', 7, 'visa', '119.56', '44.02', 'Household', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('25513', 8, 'discover', '229.89', '20.13', 'Household', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('16068', 9, 'mastercard', '233.40', '14.63', 'Household', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('14692', 10, 'jcb', '154.62', '30.70', 'Furniture', '94.00', 2);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('84525', 11, 'jcb', '166.79', '49.52', 'iron', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('32154', 12, 'discover','114.60', '21.55', 'Furniture', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('80131', 13, 'jcb', '283.05', '36.36', 'Wood', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('68617', 14, 'visa', '268.53', '44.44', 'Bricks', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('34871', 15, 'jcb', '197.73', '41.65', 'Appliances', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('22740', 16, 'visa', '150.70', '20.03', 'Furniture', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('70820', 17, 'jcb', '164.01', '40.99', 'iron', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('92868', 18, 'jcb', '259.08', '35.58', 'Wood', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('53646', 19, 'laser', '151.79', '44.87', 'Wood', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('23688', 20, 'visa', '170.49', '31.68', 'Furniture', '94.00', 2);
+
+
+
+
+
+
+
+
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2454.58', '715.40', '209.20');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2776.77', '361.42', '256.30');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2214.54', '544.81', '259.90');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3391.94', '311.47', '205.43');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '3158.98', '226.65', '111.02');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2149.41', '906.34', '270.63');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2899.44', '838.32', '149.34');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2893.29', '797.73', '138.33');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2935.48', '567.63', '272.24');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3276.60', '594.88', '167.90');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2708.64', '978.16', '250.56');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3361.96', '387.37', '292.36');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2422.16', '282.16', '362.57');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2858.38', '214.68', '269.30');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2007.43', '288.60', '199.14');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2787.90', '711.92', '224.01');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2885.29', '586.75', '141.39');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2898.95', '574.44', '233.82');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (3, '3334.08', '624.33', '118.59');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2968.26', '468.35', '187.18');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (3, '2161.67', '652.33', '104.05');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '3430.46', '387.97', '247.32');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2293.74', '575.43', '122.62');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3048.35', '579.14', '228.95');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2233.10', '767.56', '139.58');
+
+
+
+
+
+CREATE VIEW INVOICE_VIEW AS
+SELECT * FROM INVOICE NATURAL JOIN ORDER_DUMPSTER;
+
+
+
+ CREATE VIEW CUSTOMER_ORDER AS
+ SELECT CUSTOMER.customerId, CUSTOMER.firstname, CUSTOMER.lastName, ORDER_DUMPSTER.pickup_date, ORDER_DUMPSTER.dropoff_date, DUMPSTER.dumpsterid, INVOICE.total_price
+ FROM CUSTOMER, ORDER_DUMPSTER, DUMPSTER, INVOICE
+ WHERE CUSTOMER.customerId = ORDER_DUMPSTER.customerId AND DUMPSTER.dumpsterid = ORDER_DUMPSTER.dumpsterId AND INVOICE.customerId = ORDER_DUMPSTER.customerId
+ ORDER BY ORDER_DUMPSTER.customerId;
+
+
+
+
+CREATE VIEW CUSTOMER_INFO AS
+SELECT * FROM CUSTOMER;
+
+
+
+
+CREATE VIEW DUMPSTER_AVAILABLE AS
+SELECT * FROM DUMPSTER
+WHERE Available = 'Y';
+
+
+
+CREATE VIEW DRIVER_AVAILABLE AS 
+SELECT * FROM DRIVER
+WHERE Available = 'Y';
+
+
+CREATE VIEW PICKUP_ORDERS AS
+SELECT CUSTOMER.customerId, ORDER_DUMPSTER.dumpsterId,  ORDER_DUMPSTER.pickup_date, ORDER_DUMPSTER.to_street, ORDER_DUMPSTER.to_city, DUMPSTER.driverid
+FROM CUSTOMER, ORDER_DUMPSTER, DUMPSTER
+WHERE CUSTOMER.customerId = ORDER_DUMPSTER.customerId AND DUMPSTER.dumpsterid = ORDER_DUMPSTER.dumpsterId
+ORDER BY ORDER_DUMPSTER.pickup_date;
+
+
+
+CREATE VIEW DROPOFF_ORDERS AS
+SELECT CUSTOMER.customerId, ORDER_DUMPSTER.dumpsterId,  ORDER_DUMPSTER.dropoff_date, ORDER_DUMPSTER.to_street, ORDER_DUMPSTER.to_city, DUMPSTER.driverid
+FROM CUSTOMER, ORDER_DUMPSTER, DUMPSTER
+WHERE CUSTOMER.customerId = ORDER_DUMPSTER.customerId AND DUMPSTER.dumpsterid = ORDER_DUMPSTER.dumpsterId
+ORDER BY ORDER_DUMPSTER.dropoff_date;
+
+
+
+CREATE VIEW YEAR_EXPENSE AS
+SELECT * FROM EXPENSES;
+
+
+
+
+
+
+	

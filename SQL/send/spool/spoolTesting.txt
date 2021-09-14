@@ -1,0 +1,81 @@
+ 
+		; client wants to see if there is dumpster available and which one it is
+
+driverid | dumpsterid | available | capacity 
+----------+------------+-----------+----------
+        4 |         12 | Y         |     3000
+(1 row)
+
+
+
+		; client wants to see an invoice for all orders
+
+
+
+ customerid | invoiceid | payment_method  | tons_price | distance_price | days_price | type_material | over_price | over_weight | total_price | dumpsterid | dropoff_date | pickup_date |       to_street       |    to_city    | to_state | to_zip 
+------------+-----------+-----------------+------------+----------------+------------+---------------+------------+-------------+-------------+------------+--------------+-------------+-----------------------+---------------+----------+--------
+          1 |     94536 | jcb             |     109.02 |                |      48.33 | Bricks        |      94.00 |           3 |      439.35 |          1 | 2020-01-16   | 2020-01-25  | 2 Kenwood Point       | Hartford      | CT       | 06183
+          2 |     46176 | americanexpress |     231.17 |                |      42.33 | Bricks        |      94.00 |           2 |      461.50 |          2 | 2020-03-11   | 2020-03-18  | 54 Thompson Drive     | Hartford      | CT       | 06140
+          3 |     69994 | jcb             |     240.51 |                |      25.25 | Bricks        |      94.00 |           1 |      359.76 |          3 | 2020-06-27   | 2020-06-30  | 763 Corscot Plaza     | Stamford      | CT       | 06922
+          4 |     11029 | mastercard      |     293.57 |                |      18.56 | Wood          |      94.00 |           2 |      500.13 |          4 | 2020-01-06   | 2020-01-15  | 407 Anthes Road       | Stamford      | CT       | 06922
+          5 |     49289 | jcb             |     284.80 |                |      36.64 | iron          |      94.00 |           3 |      603.44 |          8 | 2019-12-05   | 2020-12-15  | 5 Di Loreto Terrace   | West Hartford | CT       | 06127
+          6 |     95491 | jcb             |     206.15 |                |      35.35 | iron          |      94.00 |           3 |      523.50 |         11 | 2019-12-02   | 2020-12-10  | 1003 Elmside Way      | West Hartford | CT       | 06127
+          7 |     57907 | visa            |     119.56 |                |      44.02 | Household     |      94.00 |           1 |      257.58 |         10 | 2020-02-13   | 2020-02-20  | 38 Nobel Avenue       | New Haven     | CT       | 06520
+          8 |     25513 | discover        |     229.89 |                |      20.13 | Household     |      94.00 |           1 |      344.02 |          2 | 2020-01-22   | 2020-01-28  | 47 Crest Line Trail   | New Haven     | CT       | 06505
+          9 |     16068 | mastercard      |     233.40 |                |      14.63 | Household     |      94.00 |           3 |      530.03 |          1 | 2020-07-25   | 2020-08-10  | 7 Springs Junction    | Hartford      | CT       | 06152
+         10 |     14692 | jcb             |     154.62 |                |      30.70 | Furniture     |      94.00 |           2 |      373.32 |          5 | 2020-08-19   | 2020-08-30  | 8362 Del Mar Pass     | Stamford      | CT       | 06922
+         11 |     84525 | jcb             |     166.79 |                |      49.52 | iron          |      94.00 |           1 |      310.31 |          8 | 2020-03-27   | 2020-04-10  | 60606 Crowley Center  | Hartford      | CT       | 06183
+         12 |     32154 | discover        |     114.60 |                |      21.55 | Furniture     |      94.00 |           1 |      230.15 |         10 | 2020-11-01   | 2020-11-15  | 5571 Clarendon Street | Hartford      | CT       | 06105
+         13 |     80131 | jcb             |     283.05 |                |      36.36 | Wood          |      94.00 |           3 |      601.41 |          7 | 2020-11-12   | 2020-11-24  | 3 Fremont Park        | Danbury       | CT       | 06816
+         14 |     68617 | visa            |     268.53 |                |      44.44 | Bricks        |      94.00 |           3 |      594.97 |          1 | 2020-08-18   | 2020-08-24  | 5 Katie Plaza         | Stamford      | CT       | 06922
+         15 |     34871 | jcb             |     197.73 |                |      41.65 | Appliances    |      94.00 |           1 |      333.38 |          6 | 2020-06-01   | 2020-06-13  | 089 Mayer Junction    | Hartford      | CT       | 06152
+         16 |     22740 | visa            |     150.70 |                |      20.03 | Furniture     |      94.00 |           1 |      264.73 |          4 | 2020-12-12   | 2021-01-10  | 831 School Crossing   | Waterbury     | CT       | 06721
+         17 |     70820 | jcb             |     164.01 |                |      40.99 | iron          |      94.00 |           3 |      487.00 |          8 | 2020-07-13   | 2020-07-25  | 768 Service Way       | New Haven     | CT       | 06533
+         18 |     92868 | jcb             |     259.08 |                |      35.58 | Wood          |      94.00 |           3 |      576.66 |          9 | 2019-12-16   | 2020-12-27  | 90739 Emmet Trail     | Waterbury     | CT       | 06705
+         19 |     53646 | laser           |     151.79 |                |      44.87 | Wood          |      94.00 |           1 |      290.66 |          2 | 2020-08-04   | 2020-08-19  | 3 Thompson Terrace    | New Haven     | CT       | 06533
+         20 |     23688 | visa            |     170.49 |                |      31.68 | Furniture     |      94.00 |           2 |      390.17 |          3 | 2020-06-05   | 2020-06-15  | 19379 Twin Pines Pass | Hartford      | CT       | 06105
+(20 rows)
+
+
+		; client wants to see when is all next pickup orders ordered by date
+
+ customerid | dumpsterid | pickup_date |       to_street       |    to_city    | driverid 
+------------+------------+-------------+-----------------------+---------------+----------
+          4 |          4 | 2020-01-15  | 407 Anthes Road       | Stamford      |        4
+          1 |          1 | 2020-01-25  | 2 Kenwood Point       | Hartford      |        1
+          8 |          2 | 2020-01-28  | 47 Crest Line Trail   | New Haven     |        2
+          7 |         10 | 2020-02-20  | 38 Nobel Avenue       | New Haven     |        2
+          2 |          2 | 2020-03-18  | 54 Thompson Drive     | Hartford      |        2
+         11 |          8 | 2020-04-10  | 60606 Crowley Center  | Hartford      |        4
+         15 |          6 | 2020-06-13  | 089 Mayer Junction    | Hartford      |        2
+         20 |          3 | 2020-06-15  | 19379 Twin Pines Pass | Hartford      |        3
+          3 |          3 | 2020-06-30  | 763 Corscot Plaza     | Stamford      |        3
+         17 |          8 | 2020-07-25  | 768 Service Way       | New Haven     |        4
+          9 |          1 | 2020-08-10  | 7 Springs Junction    | Hartford      |        1
+         19 |          2 | 2020-08-19  | 3 Thompson Terrace    | New Haven     |        2
+         14 |          1 | 2020-08-24  | 5 Katie Plaza         | Stamford      |        1
+         10 |          5 | 2020-08-30  | 8362 Del Mar Pass     | Stamford      |        1
+         12 |         10 | 2020-11-15  | 5571 Clarendon Street | Hartford      |        2
+         13 |          7 | 2020-11-24  | 3 Fremont Park        | Danbury       |        3
+          6 |         11 | 2020-12-10  | 1003 Elmside Way      | West Hartford |        3
+          5 |          8 | 2020-12-15  | 5 Di Loreto Terrace   | West Hartford |        4
+         18 |          9 | 2020-12-27  | 90739 Emmet Trail     | Waterbury     |        1
+         16 |          4 | 2021-01-10  | 831 School Crossing   | Waterbury     |        4
+(20 rows)
+
+		; client wants to see when is customer 14 due date and total amount
+
+ customerid | pickup_date | total_price 
+------------+-------------+-------------
+         14 | 2020-08-24  |      594.97
+(1 row)
+
+
+
+			; client wants to see how much driver 3 cost this year so far
+
+ driverid | driver_name | driver_salary | total_expense 
+----------+-------------+---------------+---------------
+        3 | Jack        |       3334.08 |       4077.00
+        3 | Jack        |       2161.67 |       2918.05
+(2 rows)

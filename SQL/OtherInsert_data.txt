@@ -1,0 +1,108 @@
+	; INSERT DATA INTO DRIVER
+	; 4 DRIVERS
+
+INSERT INTO DRIVER VALUES (1, 'John','Y');
+INSERT INTO DRIVER VALUES (2, 'Peter','Y');
+INSERT INTO DRIVER VALUES (3, 'Jack','N');
+INSERT INTO DRIVER VALUES (4, 'Nick','Y');
+
+
+	; INSERT DATA INTO DUMPSTER
+	; CONSIDERING 10 YARD DUMPSTER - 3000lb
+	; 12 DUMPSTERS
+
+INSERT INTO DUMPSTER VALUES (1, 1 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (2, 2 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (3, 3 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (4, 4 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (1, 5 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (2, 6 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (3, 7 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (4, 8 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (1, 9 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (2, 10 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (3, 11 ,'N', 3000);
+INSERT INTO DUMPSTER VALUES (4, 12 ,'Y', 3000);
+
+
+	; INSERT DATA TO ORDER_DUMPSTER
+
+
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (1, 1, '1/16/2020', '1/25/2020', '2 Kenwood Point', 'Hartford', 'CT', '06183');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (2, 2, '3/11/2020', '3/18/2020', '54 Thompson Drive', 'Hartford', 'CT', '06140');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (3, 3, '6/27/2020', '6/30/2020', '763 Corscot Plaza', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (4, 4, '1/6/2020', '1/15/2020', '407 Anthes Road', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (5, 8, '12/5/2019', '12/15/2020', '5 Di Loreto Terrace', 'West Hartford', 'CT', '06127');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (6, 11, '12/2/2019', '12/10/2020', '1003 Elmside Way', 'West Hartford', 'CT', '06127');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (7, 10, '2/13/2020', '2/20/2020', '38 Nobel Avenue', 'New Haven', 'CT', '06520');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (8, 2, '1/22/2020', '1/28/2020', '47 Crest Line Trail', 'New Haven', 'CT', '06505');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (9, 1, '7/25/2020', '8/10/2020', '7 Springs Junction', 'Hartford', 'CT', '06152');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (10, 5, '8/19/2020', '8/30/2020', '8362 Del Mar Pass', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (11, 8, '3/27/2020', '4/10/2020', '60606 Crowley Center', 'Hartford', 'CT', '06183');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (12, 10, '11/1/2020', '11/15/2020', '5571 Clarendon Street', 'Hartford', 'CT', '06105');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (13, 7, '11/12/2020', '11/24/2020', '3 Fremont Park', 'Danbury', 'CT', '06816');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (14, 1, '8/18/2020', '8/24/2020', '5 Katie Plaza', 'Stamford', 'CT', '06922');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (15, 6, '6/1/2020', '6/13/2020', '089 Mayer Junction', 'Hartford', 'CT', '06152');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (16, 4, '12/12/2020', '01/10/2021', '831 School Crossing', 'Waterbury', 'CT', '06721');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (17, 8, '7/13/2020', '07/25/2020', '768 Service Way', 'New Haven', 'CT', '06533');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (18, 9, '12/16/2019', '12/27/2020', '90739 Emmet Trail', 'Waterbury', 'CT', '06705');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (19, 2, '8/4/2020', '8/19/2020', '3 Thompson Terrace', 'New Haven', 'CT', '06533');
+insert into ORDER_DUMPSTER (CustomerId, DumpsterId, DropOff_date, PickUp_date, To_street, To_city, To_state , To_zip) values (20, 3, '6/5/2020', '6/15/2020', '19379 Twin Pines Pass', 'Hartford', 'CT', '06105');
+
+
+
+	; INSERT INTO INVOICE
+
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('94536', 1, 'jcb', '109.02', '48.33', 'Bricks', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('46176', 2, 'americanexpress', '231.17', '$42.33', 'Bricks', '94.00', 2);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('69994', 3, 'jcb', '240.51', '25.25', 'Bricks', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('11029', 4, 'mastercard', '293.57', '18.56', 'Wood', '94.00', 2);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('49289', 5, 'jcb', '284.80', '36.64', 'iron', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('95491', 6, 'jcb', '206.15', '35.35', 'iron', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('57907', 7, 'visa', '119.56', '44.02', 'Household', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('25513', 8, 'discover', '229.89', '20.13', 'Household', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('16068', 9, 'mastercard', '233.40', '14.63', 'Household', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('14692', 10, 'jcb', '154.62', '30.70', 'Furniture', '94.00', 2);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('84525', 11, 'jcb', '166.79', '49.52', 'iron', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('32154', 12, 'discover','114.60', '21.55', 'Furniture', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('80131', 13, 'jcb', '283.05', '36.36', 'Wood', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('68617', 14, 'visa', '268.53', '44.44', 'Bricks', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('34871', 15, 'jcb', '197.73', '41.65', 'Appliances', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('22740', 16, 'visa', '150.70', '20.03', 'Furniture', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('70820', 17, 'jcb', '164.01', '40.99', 'iron', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('92868', 18, 'jcb', '259.08', '35.58', 'Wood', '94.00', 3);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('53646', 19, 'laser', '151.79', '44.87', 'Wood', '94.00', 1);
+insert into INVOICE (InvoiceId, CustomerId, Payment_method , Tons_price, Days_price , Type_material , Over_price, Over_weight) values ('23688', 20, 'visa', '170.49', '31.68', 'Furniture', '94.00', 2);
+
+
+
+
+
+
+	; INSERT INTO EXPENSES
+
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2454.58', '715.40', '209.20');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2776.77', '361.42', '256.30');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2214.54', '544.81', '259.90');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3391.94', '311.47', '205.43');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '3158.98', '226.65', '111.02');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2149.41', '906.34', '270.63');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2899.44', '838.32', '149.34');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2893.29', '797.73', '138.33');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2935.48', '567.63', '272.24');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3276.60', '594.88', '167.90');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2708.64', '978.16', '250.56');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3361.96', '387.37', '292.36');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2422.16', '282.16', '362.57');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2858.38', '214.68', '269.30');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2007.43', '288.60', '199.14');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2787.90', '711.92', '224.01');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2885.29', '586.75', '141.39');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2898.95', '574.44', '233.82');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (3, '3334.08', '624.33', '118.59');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '2968.26', '468.35', '187.18');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (3, '2161.67', '652.33', '104.05');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (1, '3430.46', '387.97', '247.32');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '2293.74', '575.43', '122.62');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (4, '3048.35', '579.14', '228.95');
+insert into EXPENSES (DriverId, Driver_salary, Gas, Maintenance) values (2, '2233.10', '767.56', '139.58');

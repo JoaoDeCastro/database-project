@@ -1,0 +1,29 @@
+
+	; client wants to see if there is dumpster available and which one it is
+
+SELECT * FROM DUMPSTER_AVAILABLE
+
+	; client wants to see when is customer 14 due date and total amount
+
+SELECT CUSTOMER.customerid, ORDER_DUMPSTER.pickup_date, INVOICE.total_price
+FROM CUSTOMER, ORDER_DUMPSTER, INVOICE
+WHERE CUSTOMER.customerId = ORDER_DUMPSTER.customerId AND INVOICE.customerId = ORDER_DUMPSTER.customerId AND CUSTOMER.customerId = 14;
+
+	; client wants to see an invoice for all orders
+
+SELECT * FROM INVOICE_VIEW
+
+	; client wants to see how much driver 3 cost this year so far
+
+SELECT  DRIVER.driverId, DRIVER.driver_name, EXPENSES.driver_salary, EXPENSES.total_expense
+FROM DRIVER, EXPENSES
+WHERE DRIVER.driverId = EXPENSES.driverId AND DRIVER.driverId = 3;
+
+	; client wants to see when is all next pickup orders ordered by date
+
+
+SELECT * FROM PICKUP_ORDERS;
+	
+
+
+

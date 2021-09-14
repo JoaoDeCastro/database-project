@@ -1,0 +1,28 @@
+
+
+	; dropping all database
+	; starting with all views
+
+drop view customer_info;
+drop view invoice_view;
+drop view CUSTOMER_ORDER;
+drop view DUMPSTER_AVAILABLE;
+drop view DRIVER_AVAILABLE;
+drop view PICKUP_ORDERS;
+drop view DROPOFF_ORDERS;
+drop view year_expense;
+
+
+	; dropping tables
+	; please follow this order
+
+
+drop table order_dumpster;
+drop table dumpster;
+drop table expenses;
+drop table driver;
+drop table invoice;
+drop table customer;
+
+
+
