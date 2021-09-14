@@ -1,0 +1,86 @@
+CREATE DATABASE Load_go;
+
+\c Load_go
+
+CREATE TABLE CUSTOMER\c
+(
+	CustomerId int primary key,
+	FirstName varchar(32),
+	LastName varchar(32),
+	E_mail varchar(100),
+	Street varchar(100),
+	City varchar(32),
+	Zip varchar(32),
+	Phone varchar(32)
+	
+);
+
+
+
+
+CREATE TABLE DRIVER 
+(	
+	
+	DriverId int primary key,
+	Driver_name varchar(100),
+	Available char(1) DEFAULT 'Y' CHECK ((Available = 'Y') OR (Available = 'N'))
+);
+
+
+
+
+CREATE TABLE DUMPSTER
+(
+	DriverId int references DRIVER(DriverId),
+	DumpsterId int primary key,
+	Available char(1) DEFAULT 'Y' CHECK((Available='Y')OR(Available='N')),
+	Capacity int
+	
+);
+
+
+
+CREATE TABLE ORDER_DUMPSTER
+(
+	CustomerId int references CUSTOMER(CustomerId),
+	DumpsterId int references DUMPSTER(DumpsterId),
+	DropOff_date date,
+	PickUp_date date,
+	To_street varchar(100),
+	To_city varchar(100),
+	To_state varchar(100),
+	To_zip varchar(32)
+);
+
+
+
+CREATE TABLE INVOICE
+(
+	InvoiceId int primary key,
+	CustomerId int references CUSTOMER(CustomerId),
+	Payment_method varchar(100),
+	Tons_price numeric,
+	Distance_price numeric,
+	Days_price numeric,
+	Type_material varchar(100),
+	Over_price numeric,
+	Over_weight numeric,
+	Total_price numeric GENERATED ALWAYS AS (Tons_price + Days_price + (Over_weight*Over_price)) stored
+);
+
+
+
+
+CREATE TABLE EXPENSES
+(
+	DriverId int references DRIVER(DriverId),
+	Driver_salary numeric,
+	Gas numeric,
+	Maintenance numeric,
+	Total_expense numeric GENERATED ALWAYS AS (Driver_salary + Gas + Maintenance) stored
+	
+);
+	
+
+
+	
